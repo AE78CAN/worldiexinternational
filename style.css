@@ -1,0 +1,261 @@
+/* ===========================
+   WORLDIEX KENYA INTERNATIONAL
+   Main Stylesheet
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter', sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    line-height:1.6;
+}
+
+/* Header */
+
+.header{
+    background:#003b8e;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+    flex-wrap:wrap;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.globe{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#0a56c2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.logo h1{
+    font-size:1.5rem;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo p{
+    font-size:0.8rem;
+    color:#d8e6ff;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ffd34d;
+}
+
+/* Breaking */
+
+.breaking{
+    background:#d80000;
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:10px 8%;
+    gap:15px;
+}
+
+.breaking span{
+    background:white;
+    color:#d80000;
+    font-weight:700;
+    padding:5px 10px;
+    border-radius:4px;
+    font-size:13px;
+}
+
+/* Hero */
+
+.hero{
+    position:relative;
+    height:500px;
+    overflow:hidden;
+}
+
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.2));
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:60px 8%;
+}
+
+.tag{
+    background:#d80000;
+    width:max-content;
+    padding:6px 12px;
+    border-radius:4px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.overlay h2{
+    font-size:2.4rem;
+    max-width:700px;
+    margin-bottom:15px;
+}
+
+.overlay p{
+    max-width:600px;
+    color:#ececec;
+    margin-bottom:20px;
+}
+
+.overlay button{
+    width:max-content;
+    background:#ffd34d;
+    border:none;
+    padding:12px 22px;
+    font-weight:700;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.overlay button:hover{
+    background:white;
+}
+
+/* Main */
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+    padding:50px 0;
+}
+
+.section-title{
+    margin-bottom:25px;
+    border-left:6px solid #003b8e;
+    padding-left:15px;
+}
+
+.section-title h3{
+    font-size:1.8rem;
+}
+
+.news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+/* Card */
+
+.card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+}
+
+.content{
+    padding:18px;
+}
+
+.category{
+    color:#0057d9;
+    font-weight:700;
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+.content h4{
+    margin:10px 0;
+    font-size:1.1rem;
+}
+
+.content p{
+    color:#555;
+    font-size:14px;
+}
+
+/* Footer */
+
+footer{
+    background:#002a63;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+footer p{
+    color:#b8d2ff;
+    margin:10px 0;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.header{
+    justify-content:center;
+    gap:15px;
+}
+
+nav{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.overlay h2{
+    font-size:1.8rem;
+}
+
+.hero{
+    height:380px;
+}
+
+}
