@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worldiex Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="globe">🌍</div>
+    <div>
+      <h1>WORLDIEX</h1>
+      <p>Newsroom CMS</p>
+    </div>
+  </div>
+
+  <nav>
+    <a href="index.html">Website</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="section-title">
+    <h3>Publish New Article</h3>
+  </div>
+
+  <form id="newsForm" class="admin-form">
+
+    <input type="text" id="title" placeholder="Headline" required>
+
+    <select id="category" required>
+      <option value="">Choose Category</option>
+      <option>Politics</option>
+      <option>Business</option>
+      <option>Sports</option>
+      <option>Counties</option>
+      <option>Education</option>
+      <option>Breaking</option>
+    </select>
+
+    <input type="text" id="image" placeholder="Image path e.g. images/story.jpg" required>
+
+    <textarea id="summary" rows="4" placeholder="Short summary" required></textarea>
+
+    <button type="submit">Publish Article</button>
+
+  </form>
+
+  <hr style="margin:40px 0;">
+
+  <div class="section-title">
+    <h3>Published Articles</h3>
+  </div>
+
+  <div id="articleList"></div>
+
+</main>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
