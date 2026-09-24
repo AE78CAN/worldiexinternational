@@ -27,4 +27,14 @@
     "summary": "Several counties have unveiled infrastructure and youth empowerment initiatives aimed at improving local services.",
     "image": "images/county.jpg"
   }
+  {
+  "id": 5,
+  "category": "Breaking",
+  "title": "Headline here",
+  "author": "Alfred G. Ondieki",
+  "date": "24 September 2026",
+  "image": "images/story.jpg",
+  "summary": "Short introduction...",
+  "body": "Paragraph one...\n\nParagraph two...\n\nParagraph three..."
+}
 ]
