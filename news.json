@@ -27,14 +27,17 @@
     "summary": "Several counties have unveiled infrastructure and youth empowerment initiatives aimed at improving local services.",
     "image": "images/county.jpg"
   }
+  [
   {
-  "id": 5,
-  "category": "Breaking",
-  "title": "Headline here",
-  "author": "Alfred G. Ondieki",
-  "date": "24 September 2026",
-  "image": "images/story.jpg",
-  "summary": "Short introduction...",
-  "body": "Paragraph one...\n\nParagraph two...\n\nParagraph three..."
-}
+    "id": 1,
+    "category": "Politics",
+    "title": "Parliament opens debate on key national reforms",
+    "author": "Alfred G. Ondieki",
+    "date": "24 September 2026",
+    "image": "images/parliament.jpg",
+    "summary": "Lawmakers began discussions on governance and finance reforms.",
+    "body": "NAIROBI — Parliament today opened debate on a series of reforms affecting governance and public finance.\n\nMembers of Parliament discussed proposals touching on budget accountability and service delivery.\n\nMore details will follow as the debate continues."
+  }
 ]
+  {
+  
