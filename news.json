@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "category": "Politics",
+    "title": "Parliament opens debate on key national reforms",
+    "summary": "Lawmakers began discussions on several proposals expected to shape Kenya's governance and public finance agenda.",
+    "image": "images/parliament.jpg"
+  },
+  {
+    "id": 2,
+    "category": "Business",
+    "title": "Nairobi markets react to latest economic announcements",
+    "summary": "Investors and businesses continue monitoring policy changes affecting trade, investment and the cost of living.",
+    "image": "images/business.jpg"
+  },
+  {
+    "id": 3,
+    "category": "Sports",
+    "title": "Kenyan athletes prepare for major international competitions",
+    "summary": "Athletics and football remain the country's biggest sporting highlights as teams intensify preparations.",
+    "image": "images/sports.jpg"
+  },
+  {
+    "id": 4,
+    "category": "Counties",
+    "title": "County governments launch new community development projects",
+    "summary": "Several counties have unveiled infrastructure and youth empowerment initiatives aimed at improving local services.",
+    "image": "images/county.jpg"
+  }
+]
