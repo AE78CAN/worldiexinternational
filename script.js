@@ -16,7 +16,7 @@ async function loadNews() {
 
         news.forEach(article => {
 
-            const card = document.createElement("div");
+            const card = document.createElement("a");
             card.className = "card";
 
             card.innerHTML = `
