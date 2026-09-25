@@ -435,5 +435,101 @@ nav{
 .hero-content h2{
     font-size:1.5rem;
 }
+/* ================= LIVE BAR ================= */
 
+.live-bar{
+
+    background:#111827;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 8%;
+
+    font-size:14px;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.live-left{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+}
+
+.live-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:600;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    flex:1;
+
+    justify-content:flex-end;
+
+}
+
+.live-dot{
+
+    width:10px;
+
+    height:10px;
+
+    background:#ff0000;
+
+    border-radius:50%;
+
+    animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{opacity:1;}
+
+    50%{opacity:.3;}
+
+    100%{opacity:1;}
+
+}
+
+@media(max-width:768px){
+
+.live-bar{
+
+    font-size:12px;
+
+    padding:10px 5%;
+
+}
+
+.live-right{
+
+    justify-content:flex-start;
+
+}
+
+}
 }
