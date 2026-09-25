@@ -10,6 +10,7 @@ startTicker(allNews);
     allNews = await response.json();
 
     displayNews(allNews);
+    loadTrending(allNews);
 
 }
 
