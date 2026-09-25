@@ -22,10 +22,6 @@ body{
     background:#003b8e;
     color:white;
     display:flex;
-   .card{
-    text-decoration:none;
-    color:inherit;
-}
     justify-content:space-between;
     align-items:center;
     padding:18px 8%;
@@ -262,6 +258,10 @@ nav{
     height:380px;
 }
 
+}
+.card{
+    text-decoration:none;
+    color:inherit;
 }
 .admin-form{
     display:grid;
