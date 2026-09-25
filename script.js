@@ -1,6 +1,9 @@
 let allNews = [];
 
 async function loadNews(){
+    displayNews(allNews);
+loadTrending(allNews);
+startTicker(allNews);
 
     const response = await fetch("news.json");
 
