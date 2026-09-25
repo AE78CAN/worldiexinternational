@@ -3,41 +3,40 @@
     "id": 1,
     "category": "Politics",
     "title": "Parliament opens debate on key national reforms",
-    "summary": "Lawmakers began discussions on several proposals expected to shape Kenya's governance and public finance agenda.",
-    "image": "images/parliament.jpg"
+    "author": "Alfred G. Ondieki",
+    "date": "24 September 2026",
+    "image": "images/parliament.jpg",
+    "summary": "Lawmakers began discussions on governance and public finance reforms expected to shape Kenya's policy agenda.",
+    "body": "NAIROBI — Parliament today opened debate on a series of national reform proposals affecting governance, public finance and accountability.\n\nMembers of Parliament spent the first sitting discussing measures intended to strengthen service delivery and improve budget oversight. Several committees are expected to table additional recommendations before the final vote.\n\nThe debate is expected to continue over the coming days as legislators consider amendments from different parliamentary committees."
   },
   {
     "id": 2,
     "category": "Business",
     "title": "Nairobi markets react to latest economic announcements",
-    "summary": "Investors and businesses continue monitoring policy changes affecting trade, investment and the cost of living.",
-    "image": "images/business.jpg"
+    "author": "Alfred G. Ondieki",
+    "date": "24 September 2026",
+    "image": "images/business.jpg",
+    "summary": "Businesses and investors are closely monitoring new policy announcements and their potential impact on the economy.",
+    "body": "NAIROBI — Kenya's business community is evaluating the latest economic announcements released this week.\n\nAnalysts say investor confidence, inflation trends and the cost of doing business remain among the key issues influencing market performance.\n\nBusiness leaders have called for consistent policies that encourage investment while protecting consumers from rising living costs."
   },
   {
     "id": 3,
     "category": "Sports",
-    "title": "Kenyan athletes prepare for major international competitions",
-    "summary": "Athletics and football remain the country's biggest sporting highlights as teams intensify preparations.",
-    "image": "images/sports.jpg"
+    "title": "Kenyan athletes intensify preparations for international events",
+    "author": "Alfred G. Ondieki",
+    "date": "24 September 2026",
+    "image": "images/sports.jpg",
+    "summary": "Athletics and football continue to dominate Kenya's sporting calendar as teams prepare for major competitions.",
+    "body": "NAIROBI — Kenyan athletes have entered the final phase of preparations ahead of several international sporting competitions.\n\nCoaches say training camps are focusing on endurance, tactical discipline and injury prevention as competitors aim for strong performances.\n\nSupporters across the country remain optimistic that Kenya will continue its proud tradition of success on the global stage."
   },
   {
     "id": 4,
     "category": "Counties",
-    "title": "County governments launch new community development projects",
-    "summary": "Several counties have unveiled infrastructure and youth empowerment initiatives aimed at improving local services.",
-    "image": "images/county.jpg"
-  }
-  [
-  {
-    "id": 1,
-    "category": "Politics",
-    "title": "Parliament opens debate on key national reforms",
+    "title": "County governments unveil new community development projects",
     "author": "Alfred G. Ondieki",
     "date": "24 September 2026",
-    "image": "images/parliament.jpg",
-    "summary": "Lawmakers began discussions on governance and finance reforms.",
-    "body": "NAIROBI — Parliament today opened debate on a series of reforms affecting governance and public finance.\n\nMembers of Parliament discussed proposals touching on budget accountability and service delivery.\n\nMore details will follow as the debate continues."
+    "image": "images/county.jpg",
+    "summary": "Several county administrations have launched infrastructure and youth empowerment initiatives to improve local services.",
+    "body": "NAIROBI — County governments across Kenya have announced new projects targeting infrastructure, healthcare and youth employment.\n\nOfficials say the initiatives are designed to improve access to essential public services while creating opportunities for young people through community-based programs.\n\nImplementation timelines vary by county, with most projects expected to begin during the current financial year."
   }
 ]
-  {
-  
