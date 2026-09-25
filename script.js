@@ -57,6 +57,75 @@ document.addEventListener("input", e=>{
 
         displayNews(filtered);
         function loadTrending(news){
+           // =============================
+// LIVE DATE & TIME
+// =============================
+
+function updateClock(){
+
+    const now = new Date();
+
+    const date = now.toLocaleDateString("en-GB",{
+
+        weekday:"short",
+
+        day:"numeric",
+
+        month:"short",
+
+        year:"numeric",
+
+        timeZone:"Africa/Nairobi"
+
+    });
+
+    const time = now.toLocaleTimeString("en-GB",{
+
+        hour:"2-digit",
+
+        minute:"2-digit",
+
+        second:"2-digit",
+
+        timeZone:"Africa/Nairobi"
+
+    });
+
+    document.getElementById("currentDate").textContent=date;
+    document.getElementById("currentTime").textContent=time;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+// =============================
+// BREAKING HEADLINE TICKER
+// =============================
+
+function startTicker(news){
+
+    const headlines=news.map(article=>article.title);
+
+    const ticker=document.getElementById("headlineTicker");
+
+    if(!ticker) return;
+
+    let index=0;
+
+    ticker.textContent=headlines[0];
+
+    setInterval(()=>{
+
+        index=(index+1)%headlines.length;
+
+        ticker.textContent=headlines[index];
+
+    },4000);
+
+} 
 
     const box = document.getElementById("trendingNews");
 
