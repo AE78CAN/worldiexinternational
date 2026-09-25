@@ -1,4 +1,3 @@
-const STORAGE_KEY = "worldiex_articles";
 const params = new URLSearchParams(window.location.search);
 const articleId = Number(params.get("id"));
 
@@ -6,26 +5,15 @@ async function loadArticle() {
   const container = document.getElementById("article");
 
   try {
-    let news = [];
+    const response = await fetch("news.json");
+    const news = await response.json();
 
-    // First try localStorage
-    const saved = localStorage.getItem(STORAGE_KEY);
-
-    if (saved) {
-      news = JSON.parse(saved);
-    } else {
-      const response = await fetch("news.json");
-      news = await response.json();
-    }
-
-    const article = news.find(item => item.id === articleId);
+    const article = news.find(a => a.id === articleId);
 
     if (!article) {
       container.innerHTML = "<h2>Article not found.</h2>";
       return;
     }
-
-    const body = article.body || article.summary;
 
     container.innerHTML = `
       <div class="category">${article.category}</div>
@@ -40,31 +28,14 @@ async function loadArticle() {
 
       <img src="${article.image}" style="width:100%;border-radius:12px;margin-bottom:25px;">
 
-      ${body.split("\n\n").map(p =>
-        `<p style="margin-bottom:18px;line-height:1.9;">${p}</p>`
-      ).join("")}
+      <p style="line-height:1.9;">
+        ${article.body || article.summary}
+      </p>
     `;
-
   } catch (err) {
-    container.innerHTML = "<h2>Failed to load article.</h2>";
     console.error(err);
+    container.innerHTML = "<h2>Failed to load article.</h2>";
   }
 }
 
 loadArticle();
-
-async function copyLink() {
-  await navigator.clipboard.writeText(window.location.href);
-  alert("Article link copied.");
-}
-
-function shareArticle() {
-  if (navigator.share) {
-    navigator.share({
-      title: document.title,
-      url: window.location.href
-    });
-  } else {
-    copyLink();
-  }
-}
