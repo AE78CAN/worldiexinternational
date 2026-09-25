@@ -294,3 +294,23 @@ nav{
     margin-top:15px;
     background:#c40000;
 }
+/* Search */
+
+.search-box{
+    margin-bottom:30px;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 20px;
+    font-size:16px;
+    border:2px solid #d9e4f5;
+    border-radius:40px;
+    outline:none;
+    transition:0.3s;
+}
+
+.search-box input:focus{
+    border-color:#003b8e;
+    box-shadow:0 0 12px rgba(0,59,142,.15);
+}
