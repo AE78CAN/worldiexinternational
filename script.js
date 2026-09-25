@@ -1,44 +1,64 @@
-const STORAGE_KEY = "worldiex_articles";
+let allNews = [];
 
-async function loadNews() {
-  const container = document.getElementById("newsContainer");
+async function loadNews(){
 
-  try {
-    let news = [];
+    const response = await fetch("news.json");
 
-    const saved = localStorage.getItem(STORAGE_KEY);
+    allNews = await response.json();
 
-    if (saved) {
-      news = JSON.parse(saved);
-    } else {
-      const response = await fetch("news.json");
-      news = await response.json();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(news));
-    }
+    displayNews(allNews);
+
+}
+
+function displayNews(news){
+
+    const container = document.getElementById("newsContainer");
 
     container.innerHTML = "";
 
-    [...news].reverse().forEach(article => {
-      const card = document.createElement("a");
-      card.className = "card";
-      card.href = `article.html?id=${article.id}`;
+    news.forEach(article=>{
 
-      card.innerHTML = `
-        <img src="${article.image}" alt="${article.title}">
-        <div class="content">
-          <div class="category">${article.category}</div>
-          <h4>${article.title}</h4>
-          <p>${article.summary}</p>
-        </div>
-      `;
+        const card = document.createElement("a");
 
-      container.appendChild(card);
+        card.className="card";
+
+        card.href=`article.html?id=${article.id}`;
+
+        card.innerHTML=`
+            <img src="${article.image}" alt="${article.title}">
+            <div class="content">
+                <div class="category">${article.category}</div>
+                <h4>${article.title}</h4>
+                <p>${article.summary}</p>
+            </div>
+        `;
+
+        container.appendChild(card);
+
     });
 
-  } catch (err) {
-    container.innerHTML = "<p>Failed to load news.</p>";
-    console.error(err);
-  }
 }
+
+document.addEventListener("input", e=>{
+
+    if(e.target.id==="searchInput"){
+
+        const keyword=e.target.value.toLowerCase();
+
+        const filtered=allNews.filter(article=>
+
+            article.title.toLowerCase().includes(keyword) ||
+
+            article.category.toLowerCase().includes(keyword) ||
+
+            article.summary.toLowerCase().includes(keyword)
+
+        );
+
+        displayNews(filtered);
+
+    }
+
+});
 
 loadNews();
