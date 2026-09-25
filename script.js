@@ -56,6 +56,32 @@ document.addEventListener("input", e=>{
         );
 
         displayNews(filtered);
+        function loadTrending(news){
+
+    const box = document.getElementById("trendingNews");
+
+    if(!box) return;
+
+    box.innerHTML = "";
+
+    news.slice(0,4).forEach(article=>{
+
+        const item = document.createElement("a");
+
+        item.className = "trend-item";
+
+        item.href = `article.html?id=${article.id}`;
+
+        item.innerHTML = `
+            <h4>${article.title}</h4>
+            <span>${article.category}</span>
+        `;
+
+        box.appendChild(item);
+
+    });
+
+}
 
     }
 
