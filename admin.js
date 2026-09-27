@@ -461,7 +461,171 @@ function escapeHTML(text){
     .replaceAll("'","&#039;");
 
 }
+// =====================================
+// NEWSROOM 2.0
+// LIVE WRITING TOOLS
+// =====================================
 
+const titleInput =
+  document.getElementById("title");
+
+const bodyInput =
+  document.getElementById("body");
+
+const imageInput =
+  document.getElementById("image");
+
+const titleCount =
+  document.getElementById("titleCount");
+
+const wordCount =
+  document.getElementById("wordCount");
+
+const bodyCount =
+  document.getElementById("bodyCount");
+
+const imagePreview =
+  document.getElementById("imagePreview");
+
+
+// =====================================
+// HEADLINE COUNTER
+// =====================================
+
+if(titleInput){
+
+  titleInput.addEventListener(
+    "input",
+    function(){
+
+      if(titleCount){
+
+        titleCount.textContent =
+          titleInput.value.length;
+
+      }
+
+    }
+  );
+
+}
+
+
+// =====================================
+// ARTICLE WORD COUNTER
+// =====================================
+
+if(bodyInput){
+
+  bodyInput.addEventListener(
+    "input",
+    function(){
+
+      const text =
+        bodyInput.value.trim();
+
+      const words =
+        text
+          ? text.split(/\s+/).length
+          : 0;
+
+      if(wordCount){
+
+        wordCount.textContent =
+          words;
+
+      }
+
+      if(bodyCount){
+
+        bodyCount.textContent =
+          bodyInput.value.length;
+
+      }
+
+    }
+  );
+
+}
+
+
+// =====================================
+// IMAGE PREVIEW
+// =====================================
+
+if(imageInput){
+
+  imageInput.addEventListener(
+    "input",
+    function(){
+
+      const path =
+        imageInput.value.trim();
+
+      if(!imagePreview){
+
+        return;
+
+      }
+
+
+      imagePreview.innerHTML = "";
+
+      imagePreview.classList.remove(
+        "error"
+      );
+
+
+      if(!path){
+
+        imagePreview.style.display =
+          "none";
+
+        return;
+
+      }
+
+
+      const img =
+        document.createElement("img");
+
+      img.src = path;
+
+      img.alt =
+        "Article image preview";
+
+
+      img.onload = function(){
+
+        imagePreview.style.display =
+          "block";
+
+      };
+
+
+      img.onerror = function(){
+
+        imagePreview.style.display =
+          "block";
+
+        imagePreview.classList.add(
+          "error"
+        );
+
+        imagePreview.textContent =
+          "Image could not be loaded. Check that the filename and path are correct.";
+
+      };
+
+
+      imagePreview.appendChild(
+        img
+      );
+
+    }
+  );
+
+}
 
 // =====================================
 // START
