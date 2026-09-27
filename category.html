@@ -1,54 +1,208 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Worldiex Category</title>
+// =====================================
+// WORLDIEX CATEGORY SYSTEM
+// =====================================
 
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-</head>
+let articles = [];
 
-<body>
 
-<header class="header">
+// =====================================
+// GET CATEGORY FROM URL
+// =====================================
 
-  <div class="logo">
-    <div class="globe">🌍</div>
+const params = new URLSearchParams(window.location.search);
 
-    <div>
-      <h1>WORLDIEX</h1>
-      <p>Kenya International</p>
-    </div>
-  </div>
+const categoryName = params.get("cat");
 
-  <nav>
-    <a href="index.html">Home</a>
-  </nav>
 
-</header>
+// =====================================
+// LOAD NEWS
+// =====================================
 
-<main class="container">
+async function loadCategory(){
 
-  <div class="section-title">
-    <h3 id="pageTitle">Category</h3>
-  </div>
+    const container =
+        document.getElementById("categoryNews");
 
-  <div class="news-grid" id="categoryNews"></div>
+    const title =
+        document.getElementById("pageTitle");
 
-</main>
 
-<footer>
+    try{
 
-  <h3>Worldiex Kenya International</h3>
+        const response =
+            await fetch("news.json");
 
-  <p>Accurate • Independent • Kenyan</p>
 
-  <small>© 2026 Worldiex Kenya International</small>
+        if(!response.ok){
 
-</footer>
+            throw new Error(
+                "Unable to load news.json"
+            );
 
-<script src="category.js"></script>
+        }
 
-</body>
-</html>
+
+        articles =
+            await response.json();
+
+
+        // No category supplied
+
+        if(!categoryName){
+
+            title.textContent =
+                "Latest News";
+
+            renderArticles(articles);
+
+            return;
+
+        }
+
+
+        // Display category title
+
+        title.textContent =
+            categoryName + " News";
+
+
+        // Filter articles
+
+        const filtered =
+            articles.filter(article =>
+                article.category.toLowerCase() ===
+                categoryName.toLowerCase()
+            );
+
+
+        renderArticles(filtered);
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        container.innerHTML = `
+            <div class="category-error">
+
+                <h2>
+                    Unable to load news
+                </h2>
+
+                <p>
+                    Please refresh the page and try again.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+// =====================================
+// DISPLAY ARTICLES
+// =====================================
+
+function renderArticles(newsList){
+
+    const container =
+        document.getElementById("categoryNews");
+
+
+    container.innerHTML = "";
+
+
+    // No stories
+
+    if(newsList.length === 0){
+
+        container.innerHTML = `
+
+            <div class="category-empty">
+
+                <h2>
+                    No stories available
+                </h2>
+
+                <p>
+                    There are currently no stories
+                    in this category.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // Create cards
+
+    newsList.forEach(article => {
+
+        const card =
+            document.createElement("a");
+
+
+        card.className =
+            "card";
+
+
+        card.href =
+            `article.html?id=${article.id}`;
+
+
+        card.innerHTML = `
+
+            <img
+                src="${article.image}"
+                alt="${article.title}"
+                loading="lazy"
+            >
+
+
+            <div class="content">
+
+                <div class="category">
+                    ${article.category}
+                </div>
+
+
+                <h3>
+                    ${article.title}
+                </h3>
+
+
+                <p>
+                    ${article.summary}
+                </p>
+
+
+                <div class="article-card-meta">
+                    ${article.author}
+                    •
+                    ${article.date}
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+// =====================================
+// START
+// =====================================
+
+loadCategory();
