@@ -10,121 +10,158 @@
 </head>
 <body>
 
-<div class="topbar">
-  <div class="left">
-    <span id="date"></span>
-    <span>|</span>
-    <span id="time"></span>
-    <span>|</span>
-    <span>📍 Nairobi</span>
-  </div>
-  <div class="right">
-    🔴 LIVE
-  </div>
-</div>
-
-<header>
-  <div class="logo">
-    <div class="globe">🌍</div>
-    <div>
-      <h1>WORLDIEX</h1>
-      <p>Kenya International</p>
+  <!-- LIVE TOP BAR -->
+  <div class="topbar">
+    <div class="top-left">
+      <span id="date">Monday, 28 Sept 2026</span>
+      <span>•</span>
+      <span id="time">12:00:00</span>
+      <span>• Nairobi</span>
+    </div>
+    <div class="top-right">
+      🔴 LIVE
     </div>
   </div>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="category.html?cat=Politics">Politics</a>
-    <a href="category.html?cat=Business">Business</a>
-    <a href="category.html?cat=Sports">Sports</a>
-    <a href="category.html?cat=Counties">Counties</a>
-    <a href="category.html?cat=Education">Education</a>
-  </nav>
-</header>
+  <!-- HEADER -->
+  <header class="header">
 
-<section class="breaking">
-  <div class="label">BREAKING</div>
-  <div class="ticker">
-    <div id="tickerText"></div>
-  </div>
-</section>
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🌍</div>
 
-<main class="container">
+      <div>
+        <h1>WORLDIEX</h1>
+        <p>Kenya International</p>
+      </div>
+    </a>
 
-<section class="hero">
-
-  <div class="hero-image">
-    <img src="images/studio.jpg" alt="Worldiex Studio">
-
-    <div class="overlay">
-      <span class="badge">BREAKING</span>
-
-      <h2>
-        Worldiex Kenya International launches a new era of digital journalism
-      </h2>
-
-      <p>
-        Independent reporting focused on verified Kenyan news, counties,
-        politics, business, education and sports.
-      </p>
-
-      <a href="article.html?id=1" class="btn">Read Full Story</a>
-    </div>
-  </div>
-
-  <aside class="trending">
-    <h3>Trending</h3>
-    <div id="trending"></div>
-  </aside>
-
-</section>
-
-<section class="search">
-  <input type="text" id="search" placeholder="Search Worldiex news...">
-</section>
-
-<section>
-  <div class="section-title">
-    <h2>Latest News</h2>
-  </div>
-
-  <div class="grid" id="news"></div>
-</section>
-
-</main>
-
-<footer>
-  <div class="footer-grid">
-
-    <div>
-      <h2>WORLDIEX</h2>
-      <p>
-        Independent Kenyan newsroom delivering verified breaking news and in-depth analysis.
-      </p>
-    </div>
-
-    <div>
-      <h3>Quick Links</h3>
+    <nav>
       <a href="index.html">Home</a>
       <a href="category.html?cat=Politics">Politics</a>
       <a href="category.html?cat=Business">Business</a>
       <a href="category.html?cat=Sports">Sports</a>
+      <a href="category.html?cat=Counties">Counties</a>
+      <a href="category.html?cat=Education">Education</a>
+    </nav>
+
+  </header>
+
+  <!-- BREAKING -->
+  <section class="breaking">
+
+    <div class="breaking-label">BREAKING</div>
+
+    <div class="ticker">
+      <div id="tickerText"></div>
     </div>
 
-    <div>
-      <h3>Contact</h3>
-      <p>📍 Nairobi, Kenya</p>
-      <p>📧 worldiexnews@gmail.com</p>
-      <p>📞 +254 757 282 344</p>
+  </section>
+
+  <!-- MAIN -->
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <article class="featured">
+
+        <img id="heroImage" src="images/studio.jpg" alt="Featured Story">
+
+        <div class="featured-overlay">
+
+          <span class="hero-category" id="heroCategory">BREAKING</span>
+
+          <h2 id="heroTitle">
+            Worldiex Kenya International launches a new era of digital journalism
+          </h2>
+
+          <p id="heroSummary">
+            Verified breaking news, politics, business, education and sports from Kenya.
+          </p>
+
+          <div class="hero-meta" id="heroMeta">
+            Alfred G. Ondieki • 28 Sept 2026
+          </div>
+
+          <a class="hero-btn" id="heroButton" href="article.html?id=1">
+            Read Full Story
+          </a>
+
+        </div>
+
+      </article>
+
+      <aside class="trending">
+
+        <h3>Trending</h3>
+
+        <div id="trending"></div>
+
+      </aside>
+
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-section">
+      <input
+        id="search"
+        type="text"
+        placeholder="Search Worldiex news..."
+      >
+    </section>
+
+    <!-- LATEST -->
+    <section>
+
+      <div class="section-title">
+        <h2>Latest News</h2>
+      </div>
+
+      <div class="news-grid" id="news"></div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+        <h2>WORLDIEX</h2>
+
+        <p>
+          Independent Kenyan digital newsroom delivering verified breaking news,
+          politics, business, sports and county coverage.
+        </p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+
+        <a href="index.html">Home</a>
+        <a href="category.html?cat=Politics">Politics</a>
+        <a href="category.html?cat=Business">Business</a>
+        <a href="category.html?cat=Sports">Sports</a>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+
+        <p>📍 Nairobi, Kenya</p>
+        <p>📧 worldiexnews@gmail.com</p>
+        <p>📞 +254 757 282 344</p>
+      </div>
+
     </div>
 
-  </div>
+    <div class="copyright">
+      © 2026 Worldiex Kenya International • All Rights Reserved
+    </div>
 
-  <div class="copy">
-    © 2026 Worldiex Kenya International
-  </div>
-</footer>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
