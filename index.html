@@ -198,12 +198,40 @@
 
     <!-- SEARCH -->
     <section class="search-section">
-      <input
-        id="search"
-        type="text"
-        placeholder="Search Worldiex news..."
-      >
-    </section>
+
+  <div class="search-box">
+
+    <span class="search-icon">🔎</span>
+
+    <input
+      id="search"
+      type="search"
+      autocomplete="off"
+      placeholder="Search Worldiex news..."
+      aria-label="Search Worldiex news"
+    >
+
+    <button
+      id="clearSearch"
+      class="clear-search"
+      type="button"
+      aria-label="Clear search"
+      title="Clear search"
+    >
+      ✕
+    </button>
+
+  </div>
+
+  <div
+    id="searchStatus"
+    class="search-status"
+    aria-live="polite"
+  >
+    Showing the latest stories
+  </div>
+
+</section>
 
     <!-- LATEST -->
     <section>
