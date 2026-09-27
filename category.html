@@ -1,208 +1,276 @@
-// =====================================
-// WORLDIEX CATEGORY SYSTEM
-// =====================================
+<!DOCTYPE html>
+<html lang="en">
 
-let articles = [];
+<head>
 
+    <meta charset="UTF-8">
 
-// =====================================
-// GET CATEGORY FROM URL
-// =====================================
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-const params = new URLSearchParams(window.location.search);
+    <title>Worldiex News</title>
 
-const categoryName = params.get("cat");
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-// =====================================
-// LOAD NEWS
-// =====================================
+</head>
 
-async function loadCategory(){
 
-    const container =
-        document.getElementById("categoryNews");
+<body>
 
-    const title =
-        document.getElementById("pageTitle");
 
+<!-- TOP BAR -->
 
-    try{
+<div class="topbar">
 
-        const response =
-            await fetch("news.json");
+    <div class="top-left">
 
+        <span id="date"></span>
 
-        if(!response.ok){
+        <span>•</span>
 
-            throw new Error(
-                "Unable to load news.json"
-            );
+        <span id="time"></span>
 
-        }
+        <span>• Nairobi</span>
 
+    </div>
 
-        articles =
-            await response.json();
 
+    <div class="top-right">
 
-        // No category supplied
+        🔴 LIVE
 
-        if(!categoryName){
+    </div>
 
-            title.textContent =
-                "Latest News";
+</div>
 
-            renderArticles(articles);
 
-            return;
 
-        }
+<!-- HEADER -->
 
+<header class="header">
 
-        // Display category title
 
-        title.textContent =
-            categoryName + " News";
+    <a
+        href="index.html"
+        class="logo"
+    >
 
+        <div class="logo-icon">
 
-        // Filter articles
+            🌍
 
-        const filtered =
-            articles.filter(article =>
-                article.category.toLowerCase() ===
-                categoryName.toLowerCase()
-            );
+        </div>
 
 
-        renderArticles(filtered);
+        <div>
 
+            <h1>
+                WORLDIEX
+            </h1>
 
-    }catch(error){
+            <p>
+                Kenya International
+            </p>
 
-        console.error(error);
+        </div>
 
+    </a>
 
-        container.innerHTML = `
-            <div class="category-error">
 
-                <h2>
-                    Unable to load news
-                </h2>
 
-                <p>
-                    Please refresh the page and try again.
-                </p>
+    <nav>
 
-            </div>
-        `;
+        <a href="index.html">
+            Home
+        </a>
 
-    }
+        <a href="category.html?cat=Politics">
+            Politics
+        </a>
 
-}
+        <a href="category.html?cat=Business">
+            Business
+        </a>
 
+        <a href="category.html?cat=Sports">
+            Sports
+        </a>
 
-// =====================================
-// DISPLAY ARTICLES
-// =====================================
+        <a href="category.html?cat=Counties">
+            Counties
+        </a>
 
-function renderArticles(newsList){
+        <a href="category.html?cat=Education">
+            Education
+        </a>
 
-    const container =
-        document.getElementById("categoryNews");
+    </nav>
 
+</header>
 
-    container.innerHTML = "";
 
 
-    // No stories
+<!-- BREAKING BAR -->
 
-    if(newsList.length === 0){
+<section class="breaking">
 
-        container.innerHTML = `
+    <div class="breaking-label">
+        BREAKING
+    </div>
 
-            <div class="category-empty">
 
-                <h2>
-                    No stories available
-                </h2>
+    <div class="ticker">
 
-                <p>
-                    There are currently no stories
-                    in this category.
-                </p>
+        <div id="tickerText">
+            Worldiex Kenya International
+        </div>
 
-            </div>
+    </div>
 
-        `;
+</section>
 
-        return;
 
-    }
 
+<!-- MAIN -->
 
-    // Create cards
+<main class="container">
 
-    newsList.forEach(article => {
 
-        const card =
-            document.createElement("a");
+    <!-- CATEGORY HEADER -->
 
+    <section class="category-heading">
 
-        card.className =
-            "card";
+        <span>
+            WORLDIEX
+        </span>
 
+        <h2 id="pageTitle">
+            News
+        </h2>
 
-        card.href =
-            `article.html?id=${article.id}`;
+        <p>
+            Latest verified stories from
+            Worldiex Kenya International.
+        </p>
 
+    </section>
 
-        card.innerHTML = `
 
-            <img
-                src="${article.image}"
-                alt="${article.title}"
-                loading="lazy"
-            >
 
+    <!-- NEWS -->
 
-            <div class="content">
+    <section>
 
-                <div class="category">
-                    ${article.category}
-                </div>
+        <div
+            class="news-grid"
+            id="categoryNews"
+        ></div>
 
+    </section>
 
-                <h3>
-                    ${article.title}
-                </h3>
 
+</main>
 
-                <p>
-                    ${article.summary}
-                </p>
 
 
-                <div class="article-card-meta">
-                    ${article.author}
-                    •
-                    ${article.date}
-                </div>
+<!-- FOOTER -->
 
-            </div>
+<footer>
 
-        `;
 
+    <div class="footer-grid">
 
-        container.appendChild(card);
 
-    });
+        <div>
 
-}
+            <h2>
+                WORLDIEX
+            </h2>
 
+            <p>
+                Independent Kenyan digital
+                newsroom delivering verified
+                news, analysis and reporting.
+            </p>
 
-// =====================================
-// START
-// =====================================
+        </div>
 
-loadCategory();
+
+
+        <div>
+
+            <h3>
+                Sections
+            </h3>
+
+            <a href="category.html?cat=Politics">
+                Politics
+            </a>
+
+            <a href="category.html?cat=Business">
+                Business
+            </a>
+
+            <a href="category.html?cat=Sports">
+                Sports
+            </a>
+
+            <a href="category.html?cat=Education">
+                Education
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                Contact
+            </h3>
+
+            <p>
+                📍 Nairobi, Kenya
+            </p>
+
+            <p>
+                📧 worldiexnews@gmail.com
+            </p>
+
+            <p>
+                📞 +254 757 282 344
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="copyright">
+
+        © 2026 Worldiex Kenya International
+
+    </div>
+
+
+</footer>
+
+
+
+<script src="category.js"></script>
+
+</body>
+
+</html>
