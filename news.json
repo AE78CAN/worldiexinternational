@@ -4,39 +4,59 @@
     "category": "Politics",
     "title": "Parliament opens debate on key national reforms",
     "author": "Alfred G. Ondieki",
-    "date": "24 September 2026",
+    "date": "28 September 2026",
     "image": "images/parliament.jpg",
-    "summary": "Lawmakers began discussions on governance and public finance reforms expected to shape Kenya's policy agenda.",
-    "body": "NAIROBI — Parliament today opened debate on a series of national reform proposals affecting governance, public finance and accountability.\n\nMembers of Parliament spent the first sitting discussing measures intended to strengthen service delivery and improve budget oversight. Several committees are expected to table additional recommendations before the final vote.\n\nThe debate is expected to continue over the coming days as legislators consider amendments from different parliamentary committees."
+    "summary": "Members of Parliament began debating governance and public finance reforms expected to shape Kenya's policy agenda.",
+    "body": "NAIROBI — Parliament today opened debate on a series of national reform proposals touching on governance, accountability and public finance.\n\nLegislators spent the first sitting examining measures aimed at improving transparency in the management of public resources and strengthening service delivery across government institutions.\n\nSeveral parliamentary committees are expected to present amendments before the proposed legislation proceeds to the next stage of debate."
   },
   {
     "id": 2,
     "category": "Business",
     "title": "Nairobi markets react to latest economic announcements",
     "author": "Alfred G. Ondieki",
-    "date": "24 September 2026",
+    "date": "28 September 2026",
     "image": "images/business.jpg",
-    "summary": "Businesses and investors are closely monitoring new policy announcements and their potential impact on the economy.",
-    "body": "NAIROBI — Kenya's business community is evaluating the latest economic announcements released this week.\n\nAnalysts say investor confidence, inflation trends and the cost of doing business remain among the key issues influencing market performance.\n\nBusiness leaders have called for consistent policies that encourage investment while protecting consumers from rising living costs."
+    "summary": "Businesses and investors continue monitoring policy developments that could influence Kenya's economic outlook.",
+    "body": "NAIROBI — Kenya's financial markets reacted cautiously as businesses assessed the latest economic policy announcements.\n\nEconomists say investor confidence, inflation and the cost of doing business remain among the most closely watched indicators in the country's economic recovery.\n\nIndustry leaders have called for predictable policies that encourage investment while protecting households from rising living costs."
   },
   {
     "id": 3,
     "category": "Sports",
-    "title": "Kenyan athletes intensify preparations for international events",
+    "title": "Kenyan athletes intensify preparations for global competitions",
     "author": "Alfred G. Ondieki",
-    "date": "24 September 2026",
+    "date": "28 September 2026",
     "image": "images/sports.jpg",
-    "summary": "Athletics and football continue to dominate Kenya's sporting calendar as teams prepare for major competitions.",
-    "body": "NAIROBI — Kenyan athletes have entered the final phase of preparations ahead of several international sporting competitions.\n\nCoaches say training camps are focusing on endurance, tactical discipline and injury prevention as competitors aim for strong performances.\n\nSupporters across the country remain optimistic that Kenya will continue its proud tradition of success on the global stage."
+    "summary": "Athletics and football remain at the centre of Kenya's sporting calendar as teams prepare for major international events.",
+    "body": "NAIROBI — Kenyan athletes have entered the final phase of preparations ahead of several international competitions.\n\nTraining camps are focusing on endurance, tactical discipline and injury prevention as athletes aim to maintain Kenya's strong reputation on the global stage.\n\nSports officials remain optimistic that the country's representatives will deliver competitive performances in the coming events."
   },
   {
     "id": 4,
     "category": "Counties",
     "title": "County governments unveil new community development projects",
     "author": "Alfred G. Ondieki",
-    "date": "24 September 2026",
+    "date": "28 September 2026",
     "image": "images/county.jpg",
-    "summary": "Several county administrations have launched infrastructure and youth empowerment initiatives to improve local services.",
-    "body": "NAIROBI — County governments across Kenya have announced new projects targeting infrastructure, healthcare and youth employment.\n\nOfficials say the initiatives are designed to improve access to essential public services while creating opportunities for young people through community-based programs.\n\nImplementation timelines vary by county, with most projects expected to begin during the current financial year."
+    "summary": "County administrations have announced new infrastructure, healthcare and youth empowerment initiatives.",
+    "body": "NAIROBI — Several county governments have launched community development projects aimed at improving public services and creating employment opportunities.\n\nThe initiatives include road rehabilitation, healthcare expansion, water access and youth empowerment programmes designed to strengthen local economies.\n\nImplementation timelines differ across counties, with most projects expected to begin during the current financial year."
+  },
+  {
+    "id": 5,
+    "category": "Education",
+    "title": "Universities expand digital learning opportunities for students",
+    "author": "Alfred G. Ondieki",
+    "date": "28 September 2026",
+    "image": "images/education.jpg",
+    "summary": "Higher learning institutions are investing in digital education to improve access and flexibility for learners.",
+    "body": "NAIROBI — Universities across Kenya are expanding online learning platforms and digital academic resources to improve access to higher education.\n\nEducation stakeholders say technology is becoming increasingly important in delivering lectures, assessments and collaborative learning opportunities.\n\nThe move is expected to benefit students in remote areas while supporting more flexible learning models."
+  },
+  {
+    "id": 6,
+    "category": "Breaking",
+    "title": "Heavy rainfall alert issued for parts of western Kenya",
+    "author": "Worldiex Weather Desk",
+    "date": "28 September 2026",
+    "image": "images/weather.jpg",
+    "summary": "Residents in several western counties have been advised to prepare for periods of heavy rainfall and possible flooding.",
+    "body": "NAIROBI — Weather forecasters have advised residents in parts of western Kenya to remain alert following forecasts of sustained heavy rainfall.\n\nAuthorities are urging communities living near rivers and flood-prone areas to monitor official updates and avoid attempting to cross flooded roads.\n\nEmergency response agencies say they remain on standby should weather conditions worsen."
   }
 ]
