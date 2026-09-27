@@ -192,3 +192,110 @@ document.addEventListener("input", (e) => {
 // ===============================
 
 init();
+// =====================================
+// MOBILE NAVIGATION
+// =====================================
+
+const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const closeMobileMenu =
+    document.getElementById("closeMobileMenu");
+
+const mobileMenuOverlay =
+    document.getElementById("mobileMenuOverlay");
+
+
+function openMobileMenu() {
+
+    if (!mobileMenu) return;
+
+    mobileMenu.classList.add("active");
+
+    mobileMenuOverlay.classList.add("active");
+
+    mobileMenuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeMenu() {
+
+    if (!mobileMenu) return;
+
+    mobileMenu.classList.remove("active");
+
+    mobileMenuOverlay.classList.remove("active");
+
+    mobileMenuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    document.body.style.overflow = "";
+
+}
+
+
+if (mobileMenuButton) {
+
+    mobileMenuButton.addEventListener(
+        "click",
+        openMobileMenu
+    );
+
+}
+
+
+if (closeMobileMenu) {
+
+    closeMobileMenu.addEventListener(
+        "click",
+        closeMenu
+    );
+
+}
+
+
+if (mobileMenuOverlay) {
+
+    mobileMenuOverlay.addEventListener(
+        "click",
+        closeMenu
+    );
+
+}
+
+
+document
+    .querySelectorAll(".mobile-menu-links a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            closeMenu
+        );
+
+    });
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
+        }
+
+    }
+);
