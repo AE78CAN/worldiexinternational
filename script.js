@@ -57,6 +57,34 @@ function renderNews(newsList) {
   const container = document.getElementById("news");
 
   container.innerHTML = "";
+  if (newsList.length === 0) {
+
+  container.innerHTML = `
+    <div class="search-empty">
+
+      <div class="search-empty-icon">
+        🔎
+      </div>
+
+      <h2>No stories found</h2>
+
+      <p>
+        Try a different keyword, category or headline.
+      </p>
+
+      <button
+        type="button"
+        onclick="clearSearch()"
+      >
+        Show All News
+      </button>
+
+    </div>
+  `;
+
+  return;
+
+}
 
   newsList.forEach(article => {
 
@@ -167,28 +195,159 @@ function updateClock() {
 // SEARCH
 // ===============================
 
-const searchInput = document.getElementById("search");
+const searchInput =
+  document.getElementById("search");
 
-document.addEventListener("input", (e) => {
+const clearSearchButton =
+  document.getElementById("clearSearch");
 
-  if (e.target.id !== "search") return;
 
-  const keyword = e.target.value.toLowerCase();
+if (searchInput) {
 
-  const filtered = articles.filter(article =>
+  searchInput.addEventListener("input", () => {
 
-    article.title.toLowerCase().includes(keyword) ||
+    const keyword =
+      searchInput.value.trim().toLowerCase();
 
-    article.category.toLowerCase().includes(keyword) ||
 
-    article.summary.toLowerCase().includes(keyword)
+    if (!keyword) {
 
+      renderNews(articles);
+
+      updateSearchStatus(
+        articles.length,
+        ""
+      );
+
+      return;
+
+    }
+
+
+    const filtered =
+      articles.filter(article => {
+
+        const searchableText = [
+
+          article.title,
+          article.category,
+          article.summary,
+          article.body,
+          article.author
+
+        ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+
+        return searchableText.includes(
+          keyword
+        );
+
+      });
+
+
+    renderNews(filtered);
+
+    updateSearchStatus(
+      filtered.length,
+      keyword
+    );
+
+  });
+
+}
+
+
+if (clearSearchButton) {
+
+  clearSearchButton.addEventListener(
+    "click",
+    clearSearch
   );
 
-  renderNews(filtered);
+}
 
-});
 
+function clearSearch() {
+
+  if (searchInput) {
+
+    searchInput.value = "";
+
+    searchInput.focus();
+
+  }
+
+
+  renderNews(articles);
+
+  updateSearchStatus(
+    articles.length,
+    ""
+  );
+
+}
+
+
+function updateSearchStatus(
+  count,
+  keyword
+) {
+
+  const status =
+    document.getElementById(
+      "searchStatus"
+    );
+
+  const title =
+    document.getElementById(
+      "latestTitle"
+    );
+
+
+  if (!status) return;
+
+
+  if (!keyword) {
+
+    status.textContent =
+      `Showing ${count} latest ${
+        count === 1
+          ? "story"
+          : "stories"
+      }`;
+
+
+    if (title) {
+
+      title.textContent =
+        "Latest News";
+
+    }
+
+    return;
+
+  }
+
+
+  status.textContent =
+    `${count} ${
+      count === 1
+        ? "story"
+        : "stories"
+    } found for "${keyword}"`;
+
+
+  if (title) {
+
+    title.textContent =
+      "Search Results";
+
+  }
+
+}
 // ===============================
 
 init();
