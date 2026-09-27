@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Worldiex Kenya International</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worldiex Kenya International</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="live-bar">
-  <div class="live-left">
-    <span id="currentDate"></span>
+<div class="topbar">
+  <div class="left">
+    <span id="date"></span>
     <span>|</span>
-    <span id="currentTime"></span>
+    <span id="time"></span>
     <span>|</span>
     <span>📍 Nairobi</span>
   </div>
-  <div class="live-right">
-    <span class="live-dot"></span>
-    <span>LIVE</span>
+  <div class="right">
+    🔴 LIVE
   </div>
 </div>
 
-<header class="header">
+<header>
   <div class="logo">
     <div class="globe">🌍</div>
     <div>
@@ -43,59 +43,86 @@
 </header>
 
 <section class="breaking">
-  <span>BREAKING</span>
+  <div class="label">BREAKING</div>
   <div class="ticker">
-    <div id="breakingTicker"></div>
+    <div id="tickerText"></div>
   </div>
 </section>
 
 <main class="container">
 
-<div class="hero-grid">
+<section class="hero">
 
-<article class="featured">
-<img src="images/studio.jpg" alt="Worldiex Studio">
+  <div class="hero-image">
+    <img src="images/studio.jpg" alt="Worldiex Studio">
 
-<div class="hero-content">
-<div class="live-tag">BREAKING</div>
+    <div class="overlay">
+      <span class="badge">BREAKING</span>
 
-<h2>Worldiex Kenya International launches a new era of digital journalism</h2>
+      <h2>
+        Worldiex Kenya International launches a new era of digital journalism
+      </h2>
 
-<p>Verified breaking news, politics, business, sports and county stories from across Kenya.</p>
+      <p>
+        Independent reporting focused on verified Kenyan news, counties,
+        politics, business, education and sports.
+      </p>
 
-<div class="meta">
-<span>By Alfred G. Ondieki</span>
-<span>•</span>
-<span>28 Sept 2026</span>
-</div>
+      <a href="article.html?id=1" class="btn">Read Full Story</a>
+    </div>
+  </div>
 
-<a class="read-btn" href="article.html?id=1">Read Full Story</a>
-</div>
-</article>
+  <aside class="trending">
+    <h3>Trending</h3>
+    <div id="trending"></div>
+  </aside>
 
-<aside class="trending">
-<h3>Trending</h3>
-<div id="trendingNews"></div>
-</aside>
+</section>
 
-</div>
+<section class="search">
+  <input type="text" id="search" placeholder="Search Worldiex news...">
+</section>
 
-<div class="search-box">
-<input type="text" id="searchInput" placeholder="Search Worldiex news...">
-</div>
+<section>
+  <div class="section-title">
+    <h2>Latest News</h2>
+  </div>
 
-<div class="section-title">
-<h3>Latest News</h3>
-</div>
-
-<div class="news-grid" id="newsContainer"></div>
+  <div class="grid" id="news"></div>
+</section>
 
 </main>
 
 <footer>
-<h3>Worldiex Kenya International</h3>
-<p>Independent • Accurate • Kenyan</p>
-<small>© 2026 Worldiex Kenya International</small>
+  <div class="footer-grid">
+
+    <div>
+      <h2>WORLDIEX</h2>
+      <p>
+        Independent Kenyan newsroom delivering verified breaking news and in-depth analysis.
+      </p>
+    </div>
+
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="category.html?cat=Politics">Politics</a>
+      <a href="category.html?cat=Business">Business</a>
+      <a href="category.html?cat=Sports">Sports</a>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <p>📍 Nairobi, Kenya</p>
+      <p>📧 worldiexnews@gmail.com</p>
+      <p>📞 +254 757 282 344</p>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © 2026 Worldiex Kenya International
+  </div>
 </footer>
 
 <script src="script.js"></script>
