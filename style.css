@@ -589,3 +589,44 @@ footer{
     }
 
 }
+/* =========================================
+   ARTICLE PAGE MOBILE IMPROVEMENTS
+   ========================================= */
+
+@media (max-width:768px){
+
+    .article-container{
+        width:94%;
+        padding:25px 0 45px;
+    }
+
+    .article-title{
+        font-size:30px;
+        line-height:1.2;
+    }
+
+    .article-image{
+        width:100%;
+        height:auto;
+        max-height:350px;
+        object-fit:cover;
+    }
+
+    .article-body{
+        padding:22px;
+    }
+
+    .article-body p{
+        font-size:17px;
+        line-height:1.8;
+    }
+
+    .article-meta{
+        font-size:13px;
+    }
+
+    .share button{
+        flex:1;
+    }
+
+}
