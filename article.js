@@ -1,155 +1,531 @@
-const params = new URLSearchParams(window.location.search);
-const id = Number(params.get("id"));
+// =====================================
+// WORLDIEX ARTICLE SYSTEM
+// =====================================
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const id =
+    Number(params.get("id"));
 
 let articles = [];
 
+
+// =====================================
+// LOAD NEWS
+// =====================================
+
 async function init(){
 
-const res = await fetch("news.json");
-articles = await res.json();
+    try{
 
-loadArticle();
-loadRelated();
-updateClock();
+        const response =
+            await fetch("news.json");
 
-setInterval(updateClock,1000);
+        if(!response.ok){
+            throw new Error(
+                "Unable to load news.json"
+            );
+        }
+
+        articles =
+            await response.json();
+
+        loadArticle();
+
+        loadRelated();
+
+        updateClock();
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        document.getElementById("article").innerHTML = `
+
+            <div class="article-not-found">
+
+                <h2>
+                    Unable to load story
+                </h2>
+
+                <p>
+                    Please refresh the page and try again.
+                </p>
+
+                <a
+                    class="back-home"
+                    href="index.html"
+                >
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        `;
+
+    }
 
 }
+
+
+// =====================================
+// LOAD ARTICLE
+// =====================================
 
 function loadArticle(){
 
-const article = articles.find(a=>a.id===id);
+    const article =
+        articles.find(
+            article => article.id === id
+        );
 
-const container = document.getElementById("article");
+    const container =
+        document.getElementById("article");
 
-if(!article){
 
-container.innerHTML="<h2>Article not found.</h2>";
+    if(!article){
 
-return;
+        container.innerHTML = `
+
+            <div class="article-not-found">
+
+                <h2>
+                    Article Not Found
+                </h2>
+
+                <p>
+                    The story you are looking for
+                    could not be found.
+                </p>
+
+                <a
+                    class="back-home"
+                    href="index.html"
+                >
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="article-header">
+
+            <span class="article-category">
+                ${article.category}
+            </span>
+
+
+            <h1 class="article-title">
+                ${article.title}
+            </h1>
+
+
+            <div class="article-meta">
+
+                <span>
+                    ✍️ <strong>
+                        ${article.author}
+                    </strong>
+                </span>
+
+                <span>•</span>
+
+                <span>
+                    📅 ${article.date}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <img
+            class="article-image"
+            src="${article.image}"
+            alt="${article.title}"
+        >
+
+
+        <div class="article-body">
+
+            ${article.body
+                .split("\n\n")
+                .map(
+                    paragraph =>
+                    `<p>${paragraph}</p>`
+                )
+                .join("")
+            }
+
+        </div>
+
+    `;
+
+
+    document.title =
+        `${article.title} | Worldiex Kenya International`;
 
 }
 
-container.innerHTML=`
 
-<div class="article-header">
-
-<span class="article-category">${article.category}</span>
-
-<h1 class="article-title">
-${article.title}
-</h1>
-
-<div class="article-meta">
-
-<span><strong>${article.author}</strong></span>
-
-<span>•</span>
-
-<span>${article.date}</span>
-
-</div>
-
-</div>
-
-<img class="article-image" src="${article.image}" alt="${article.title}">
-
-<div class="article-body">
-
-${article.body.split("\n\n").map(p=>`<p>${p}</p>`).join("")}
-
-</div>
-
-`;
-
-document.title=article.title;
-
-}
+// =====================================
+// RELATED STORIES
+// =====================================
 
 function loadRelated(){
 
-const related = articles.filter(a=>a.id!==id).slice(0,3);
+    const current =
+        articles.find(
+            article => article.id === id
+        );
 
-const box = document.getElementById("related");
+    const box =
+        document.getElementById("related");
 
-box.innerHTML="";
 
-related.forEach(article=>{
+    if(!current){
 
-const card=document.createElement("a");
+        box.innerHTML = "";
 
-card.className="card";
+        return;
 
-card.href=`article.html?id=${article.id}`;
+    }
 
-card.innerHTML=`
 
-<img src="${article.image}">
+    let related =
+        articles.filter(
+            article =>
+                article.id !== id &&
+                article.category === current.category
+        );
 
-<div class="content">
 
-<div class="category">${article.category}</div>
+    // If there aren't enough stories
+    // in the same category, use others.
 
-<h3>${article.title}</h3>
+    if(related.length < 3){
 
-<p>${article.summary}</p>
+        const others =
+            articles.filter(
+                article =>
+                    article.id !== id &&
+                    article.category !== current.category
+            );
 
-</div>
+        related =
+            [...related, ...others];
 
-`;
+    }
 
-box.appendChild(card);
 
-});
+    related =
+        related.slice(0,3);
+
+
+    box.innerHTML = "";
+
+
+    related.forEach(article => {
+
+        const card =
+            document.createElement("a");
+
+        card.className =
+            "card";
+
+        card.href =
+            `article.html?id=${article.id}`;
+
+
+        card.innerHTML = `
+
+            <img
+                src="${article.image}"
+                alt="${article.title}"
+                loading="lazy"
+            >
+
+            <div class="content">
+
+                <div class="category">
+                    ${article.category}
+                </div>
+
+                <h3>
+                    ${article.title}
+                </h3>
+
+                <p>
+                    ${article.summary}
+                </p>
+
+                <div class="article-card-meta">
+                    ${article.author} • ${article.date}
+                </div>
+
+            </div>
+
+        `;
+
+
+        box.appendChild(card);
+
+    });
 
 }
+
+
+// =====================================
+// CLOCK
+// =====================================
 
 function updateClock(){
 
-const now=new Date();
+    const now =
+        new Date();
 
-document.getElementById("date").textContent=
-now.toLocaleDateString("en-GB",{
-weekday:"long",
-day:"numeric",
-month:"short",
-year:"numeric",
-timeZone:"Africa/Nairobi"
-});
 
-document.getElementById("time").textContent=
-now.toLocaleTimeString("en-GB",{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-timeZone:"Africa/Nairobi"
-});
+    const date =
+        document.getElementById("date");
+
+    const time =
+        document.getElementById("time");
+
+
+    if(date){
+
+        date.textContent =
+            now.toLocaleDateString(
+                "en-GB",
+                {
+                    weekday:"long",
+                    day:"numeric",
+                    month:"short",
+                    year:"numeric",
+                    timeZone:"Africa/Nairobi"
+                }
+            );
+
+    }
+
+
+    if(time){
+
+        time.textContent =
+            now.toLocaleTimeString(
+                "en-GB",
+                {
+                    hour:"2-digit",
+                    minute:"2-digit",
+                    second:"2-digit",
+                    timeZone:"Africa/Nairobi"
+                }
+            );
+
+    }
 
 }
+
+
+// =====================================
+// COPY LINK
+// =====================================
 
 async function copyLink(){
 
-await navigator.clipboard.writeText(window.location.href);
+    try{
 
-alert("Article link copied.");
+        await navigator.clipboard.writeText(
+            window.location.href
+        );
+
+        alert(
+            "Article link copied."
+        );
+
+    }catch(error){
+
+        alert(
+            "Unable to copy link."
+        );
+
+    }
 
 }
+
+
+// =====================================
+// SHARE ARTICLE
+// =====================================
 
 function shareArticle(){
 
-if(navigator.share){
+    if(navigator.share){
 
-navigator.share({
-title:document.title,
-url:window.location.href
-});
+        navigator.share({
 
-}else{
+            title:
+                document.title,
 
-copyLink();
+            url:
+                window.location.href
+
+        }).catch(() => {});
+
+    }else{
+
+        copyLink();
+
+    }
 
 }
 
+
+// =====================================
+// MOBILE NAVIGATION
+// =====================================
+
+const mobileMenuButton =
+    document.getElementById(
+        "mobileMenuButton"
+    );
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+const closeMobileMenu =
+    document.getElementById(
+        "closeMobileMenu"
+    );
+
+const mobileMenuOverlay =
+    document.getElementById(
+        "mobileMenuOverlay"
+    );
+
+
+function openMobileMenu(){
+
+    if(!mobileMenu) return;
+
+    mobileMenu.classList.add(
+        "active"
+    );
+
+    mobileMenuOverlay.classList.add(
+        "active"
+    );
+
+    mobileMenuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
 }
+
+
+function closeMenu(){
+
+    if(!mobileMenu) return;
+
+    mobileMenu.classList.remove(
+        "active"
+    );
+
+    mobileMenuOverlay.classList.remove(
+        "active"
+    );
+
+    mobileMenuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+if(mobileMenuButton){
+
+    mobileMenuButton.addEventListener(
+        "click",
+        openMobileMenu
+    );
+
+}
+
+
+if(closeMobileMenu){
+
+    closeMobileMenu.addEventListener(
+        "click",
+        closeMenu
+    );
+
+}
+
+
+if(mobileMenuOverlay){
+
+    mobileMenuOverlay.addEventListener(
+        "click",
+        closeMenu
+    );
+
+}
+
+
+document
+    .querySelectorAll(
+        ".mobile-menu-links a"
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            closeMenu
+        );
+
+    });
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+// =====================================
+// START
+// =====================================
 
 init();
