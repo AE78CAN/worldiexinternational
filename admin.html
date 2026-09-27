@@ -127,6 +127,89 @@
       margin-bottom:25px;
       line-height:1.6;
     }
+    /* =====================================
+   NEWSROOM 2.0
+   ===================================== */
+
+.field-counter{
+  text-align:right;
+  margin-top:5px;
+  font-size:12px;
+  color:#64748b;
+}
+
+.article-writing-info{
+  display:flex;
+  justify-content:space-between;
+  margin-top:7px;
+  font-size:12px;
+  color:#64748b;
+}
+
+.image-preview{
+  margin-top:15px;
+  display:none;
+}
+
+.image-preview img{
+  width:100%;
+  max-height:300px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid #dbe3ef;
+}
+
+.image-preview.error{
+  display:block;
+  background:#fff7ed;
+  color:#9a3412;
+  padding:12px;
+  border-radius:8px;
+  font-size:13px;
+}
+
+.live-preview{
+  margin-top:25px;
+  padding:25px;
+  background:white;
+  border:1px solid #dbe3ef;
+  border-radius:12px;
+}
+
+.live-preview-label{
+  color:#d60000;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.live-preview h2{
+  font-size:28px;
+  line-height:1.2;
+  color:#111827;
+}
+
+@media(max-width:768px){
+
+  .admin-page{
+    width:94%;
+    padding:25px 0;
+  }
+
+  .admin-card{
+    padding:20px;
+  }
+
+  .admin-header{
+    padding:22px;
+  }
+
+  .live-preview h2{
+    font-size:23px;
+  }
+
+}
   </style>
 </head>
 
@@ -233,20 +316,25 @@
 
         <!-- TITLE -->
 
-        <div class="form-group">
+       <div class="form-group">
 
-          <label for="title">
-            Headline
-          </label>
+  <label for="title">
+    Headline
+  </label>
 
-          <input
-            type="text"
-            id="title"
-            placeholder="Enter the news headline"
-            required
-          >
+  <input
+    type="text"
+    id="title"
+    placeholder="Enter the news headline"
+    maxlength="150"
+    required
+  >
 
-        </div>
+  <div class="field-counter">
+    <span id="titleCount">0</span>/150 characters
+  </div>
+
+</div>
 
 
         <!-- CATEGORY -->
@@ -343,18 +431,23 @@
 
         <div class="form-group">
 
-          <label for="image">
-            Image Filename
-          </label>
+  <label for="image">
+    Image Filename
+  </label>
 
-          <input
-            type="text"
-            id="image"
-            placeholder="images/parliament.jpg"
-            required
-          >
+  <input
+    type="text"
+    id="image"
+    placeholder="images/parliament.jpg"
+    required
+  >
 
-        </div>
+  <div
+    id="imagePreview"
+    class="image-preview"
+  ></div>
+
+</div>
 
 
         <!-- SUMMARY -->
@@ -376,20 +469,33 @@
 
         <!-- BODY -->
 
-        <div class="form-group">
+       <div class="form-group">
 
-          <label for="body">
-            Full Article
-          </label>
+  <label for="body">
+    Full Article
+  </label>
 
-          <textarea
-            id="body"
-            placeholder="Write the complete article here. Separate paragraphs with blank lines."
-            required
-          ></textarea>
+  <textarea
+    id="body"
+    placeholder="Write the complete article here. Separate paragraphs with blank lines."
+    required
+  ></textarea>
 
-        </div>
+  <div class="article-writing-info">
 
+    <span>
+      Words:
+      <strong id="wordCount">0</strong>
+    </span>
+
+    <span>
+      Characters:
+      <strong id="bodyCount">0</strong>
+    </span>
+
+  </div>
+
+</div>
 
         <!-- BUTTONS -->
 
