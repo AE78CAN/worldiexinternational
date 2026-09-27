@@ -1,100 +1,479 @@
-const STORAGE_KEY = "worldiex_articles";
+// =====================================
+// WORLDIEX NEWSROOM
+// Publishing Dashboard
+// =====================================
 
-const defaultNews = [
-  {
-    id:1,
-    category:"Politics",
-    title:"Parliament opens debate on key national reforms",
-    summary:"Lawmakers began discussions on governance and finance reforms.",
-    image:"images/parliament.jpg"
+let currentArticles = [];
+let newArticle = null;
+
+
+// =====================================
+// LOAD EXISTING NEWS
+// =====================================
+
+async function loadExistingNews(){
+
+  try{
+
+    const response = await fetch("news.json");
+
+    currentArticles = await response.json();
+
   }
-];
 
-function getArticles(){
+  catch(error){
 
-  const saved = localStorage.getItem(STORAGE_KEY);
+    console.error(
+      "Could not load news.json:",
+      error
+    );
 
-  if(saved){
-    return JSON.parse(saved);
+    currentArticles = [];
+
   }
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultNews));
-  return defaultNews;
 
 }
 
-function saveArticles(data){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+// =====================================
+// SET TODAY'S DATE
+// =====================================
+
+function setToday(){
+
+  const today = new Date();
+
+  const year =
+    today.getFullYear();
+
+  const month =
+    String(today.getMonth() + 1)
+    .padStart(2,"0");
+
+  const day =
+    String(today.getDate())
+    .padStart(2,"0");
+
+  document.getElementById(
+    "datePublished"
+  ).value =
+    `${year}-${month}-${day}`;
+
 }
 
-function render(){
 
-  const list = document.getElementById("articleList");
-  const articles = getArticles();
+// =====================================
+// LIVE CLOCK
+// =====================================
 
-  list.innerHTML = "";
+function updateClock(){
 
-  articles.reverse().forEach(article=>{
+  const now = new Date();
 
-    const div = document.createElement("div");
-    div.className="card";
 
-    div.innerHTML=`
-      <img src="${article.image}">
-      <div class="content">
-        <div class="category">${article.category}</div>
-        <h4>${article.title}</h4>
-        <p>${article.summary}</p>
-        <button onclick="removeArticle(${article.id})">Delete</button>
-      </div>
-    `;
+  const date =
+    now.toLocaleDateString(
+      "en-GB",
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"short",
+        year:"numeric",
+        timeZone:"Africa/Nairobi"
+      }
+    );
 
-    list.appendChild(div);
+
+  const time =
+    now.toLocaleTimeString(
+      "en-GB",
+      {
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit",
+        timeZone:"Africa/Nairobi"
+      }
+    );
+
+
+  document.getElementById(
+    "date"
+  ).textContent = date;
+
+
+  document.getElementById(
+    "time"
+  ).textContent = time;
+
+}
+
+
+// =====================================
+// GENERATE ARTICLE
+// =====================================
+
+document
+  .getElementById("articleForm")
+  .addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+
+    const title =
+      document
+      .getElementById("title")
+      .value
+      .trim();
+
+
+    const category =
+      document
+      .getElementById("category")
+      .value;
+
+
+    const author =
+      document
+      .getElementById("author")
+      .value
+      .trim();
+
+
+    const dateValue =
+      document
+      .getElementById("datePublished")
+      .value;
+
+
+    const image =
+      document
+      .getElementById("image")
+      .value
+      .trim();
+
+
+    const summary =
+      document
+      .getElementById("summary")
+      .value
+      .trim();
+
+
+    const body =
+      document
+      .getElementById("body")
+      .value
+      .trim();
+
+
+    if(
+      !title ||
+      !category ||
+      !author ||
+      !dateValue ||
+      !image ||
+      !summary ||
+      !body
+    ){
+
+      alert(
+        "Please complete all fields."
+      );
+
+      return;
+
+    }
+
+
+    // Create new ID
+
+    const ids =
+      currentArticles.map(
+        article => Number(article.id)
+      );
+
+
+    const highestId =
+      ids.length
+      ? Math.max(...ids)
+      : 0;
+
+
+    const id =
+      highestId + 1;
+
+
+    // Format date
+
+    const dateObject =
+      new Date(
+        `${dateValue}T00:00:00`
+      );
+
+
+    const formattedDate =
+      dateObject.toLocaleDateString(
+        "en-GB",
+        {
+          day:"numeric",
+          month:"long",
+          year:"numeric"
+        }
+      );
+
+
+    // Create article
+
+    newArticle = {
+
+      id:id,
+
+      category:category,
+
+      title:title,
+
+      author:author,
+
+      date:formattedDate,
+
+      image:image,
+
+      summary:summary,
+
+      body:body
+
+    };
+
+
+    // Add newest story to beginning
+
+    currentArticles =
+      [
+        newArticle,
+        ...currentArticles
+      ];
+
+
+    showPreview();
+
+
+    const message =
+      document.getElementById(
+        "successMessage"
+      );
+
+
+    message.style.display = "block";
+
+
+    message.textContent =
+      "Article generated successfully. Click 'Download news.json' to create your updated news file.";
+
 
   });
 
+
+// =====================================
+// PREVIEW
+// =====================================
+
+function showPreview(){
+
+  if(!newArticle) return;
+
+
+  const preview =
+    document.getElementById(
+      "preview"
+    );
+
+
+  const content =
+    document.getElementById(
+      "previewContent"
+    );
+
+
+  content.innerHTML = `
+
+    <p>
+      <strong>Category:</strong>
+      ${escapeHTML(newArticle.category)}
+    </p>
+
+    <p>
+      <strong>Headline:</strong>
+      ${escapeHTML(newArticle.title)}
+    </p>
+
+    <p>
+      <strong>Author:</strong>
+      ${escapeHTML(newArticle.author)}
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      ${escapeHTML(newArticle.date)}
+    </p>
+
+    <p>
+      <strong>Image:</strong>
+      ${escapeHTML(newArticle.image)}
+    </p>
+
+    <br>
+
+    <p>
+      ${escapeHTML(newArticle.summary)}
+    </p>
+
+  `;
+
+
+  preview.style.display =
+    "block";
+
 }
 
-function removeArticle(id){
 
-  let articles = getArticles();
+// =====================================
+// DOWNLOAD NEWS.JSON
+// =====================================
 
-  articles = articles.filter(a=>a.id!==id);
+document
+  .getElementById("downloadBtn")
+  .addEventListener("click", function(){
 
-  saveArticles(articles);
+    if(!currentArticles.length){
 
-  render();
+      alert(
+        "No articles are available."
+      );
+
+      return;
+
+    }
+
+
+    const json =
+      JSON.stringify(
+        currentArticles,
+        null,
+        2
+      );
+
+
+    const blob =
+      new Blob(
+        [json],
+        {
+          type:"application/json"
+        }
+      );
+
+
+    const url =
+      URL.createObjectURL(blob);
+
+
+    const link =
+      document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+      "news.json";
+
+
+    document.body.appendChild(
+      link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+      link
+    );
+
+
+    URL.revokeObjectURL(
+      url
+    );
+
+  });
+
+
+// =====================================
+// CLEAR FORM
+// =====================================
+
+document
+  .getElementById("clearBtn")
+  .addEventListener("click", function(){
+
+    if(
+      !confirm(
+        "Clear the article form?"
+      )
+    ){
+
+      return;
+
+    }
+
+
+    document
+      .getElementById("articleForm")
+      .reset();
+
+
+    document
+      .getElementById("preview")
+      .style.display =
+      "none";
+
+
+    document
+      .getElementById("successMessage")
+      .style.display =
+      "none";
+
+
+    setToday();
+
+  });
+
+
+// =====================================
+// SECURITY HELPER
+// =====================================
+
+function escapeHTML(text){
+
+  return text
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
-document.getElementById("newsForm").addEventListener("submit",(e)=>{
 
-  e.preventDefault();
+// =====================================
+// START
+// =====================================
 
-  const articles = getArticles();
+loadExistingNews();
 
-  const article = {
+setToday();
 
-    id: Date.now(),
+updateClock();
 
-    title:title.value,
-
-    category:category.value,
-
-    image:image.value,
-
-    summary:summary.value
-
-  };
-
-  articles.push(article);
-
-  saveArticles(articles);
-
-  e.target.reset();
-
-  render();
-
-});
-
-render();
+setInterval(
+  updateClock,
+  1000
+);
