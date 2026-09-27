@@ -1,47 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Worldiex Article</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worldiex Article</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.article-container{
+width:min(950px,92%);
+margin:auto;
+padding:35px 0;
+}
+
+.article-header{
+margin-bottom:25px;
+}
+
+.article-category{
+display:inline-block;
+background:#d60000;
+color:white;
+padding:6px 12px;
+border-radius:4px;
+font-size:12px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.article-title{
+font-size:42px;
+line-height:1.15;
+margin-bottom:18px;
+}
+
+.article-meta{
+display:flex;
+gap:12px;
+color:#64748b;
+font-size:14px;
+flex-wrap:wrap;
+margin-bottom:22px;
+}
+
+.article-image{
+width:100%;
+border-radius:16px;
+margin-bottom:30px;
+}
+
+.article-body p{
+font-size:18px;
+line-height:1.9;
+margin-bottom:22px;
+}
+
+.share{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin:35px 0;
+}
+
+.share button{
+border:none;
+padding:12px 18px;
+border-radius:8px;
+background:#003b8e;
+color:white;
+cursor:pointer;
+font-weight:600;
+}
+
+.related{
+margin-top:50px;
+}
+
+.related-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+}
+</style>
+
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">
-    <div class="globe">🌍</div>
-    <div>
-      <h1>WORLDIEX</h1>
-      <p>Kenya International</p>
-    </div>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-  </nav>
+<div class="topbar">
+<div class="left">
+<span id="date"></span>
+<span>|</span>
+<span id="time"></span>
+<span>|</span>
+<span>📍 Nairobi</span>
+</div>
+<div class="right">🔴 LIVE</div>
+</div>
+
+<header>
+<div class="logo">
+<div class="globe">🌍</div>
+<div>
+<h1>WORLDIEX</h1>
+<p>Kenya International</p>
+</div>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="category.html?cat=Politics">Politics</a>
+<a href="category.html?cat=Business">Business</a>
+<a href="category.html?cat=Sports">Sports</a>
+</nav>
+
 </header>
 
-<main class="container">
+<main class="article-container">
 
-  <div id="article"></div>
+<div id="article"></div>
 
-  <section style="margin-top:40px;">
-    <h3>Share this story</h3>
-    <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap;">
-      <button onclick="shareArticle()">Share</button>
-      <button onclick="copyLink()">Copy Link</button>
-    </div>
-  </section>
+<section class="share">
+
+<button onclick="shareArticle()">Share</button>
+
+<button onclick="copyLink()">Copy Link</button>
+
+</section>
+
+<section class="related">
+
+<div class="section-title">
+<h2>Related Stories</h2>
+</div>
+
+<div class="related-grid" id="related"></div>
+
+</section>
 
 </main>
 
 <footer>
-  <h3>Worldiex Kenya International</h3>
-  <p>Accurate • Independent • Kenyan</p>
-  <small>© 2026 Worldiex Kenya International</small>
+<div class="footer-grid">
+
+<div>
+<h2>WORLDIEX</h2>
+<p>Independent Kenyan newsroom.</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>📧 worldiexnews@gmail.com</p>
+<p>📞 +254757282344</p>
+</div>
+
+</div>
+
+<div class="copy">
+© 2026 Worldiex Kenya International
+</div>
+
 </footer>
 
 <script src="article.js"></script>
+
 </body>
 </html>
