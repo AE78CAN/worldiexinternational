@@ -626,7 +626,132 @@ if(imageInput){
   );
 
 }
+// =====================================
+// LIVE EDITORIAL PREVIEW
+// =====================================
 
+const livePreview =
+  document.getElementById("livePreview");
+
+const livePreviewTitle =
+  document.getElementById("livePreviewTitle");
+
+const livePreviewSummary =
+  document.getElementById("livePreviewSummary");
+
+const livePreviewMeta =
+  document.getElementById("livePreviewMeta");
+
+const categoryInput =
+  document.getElementById("category");
+
+const authorInput =
+  document.getElementById("author");
+
+
+function updateLivePreview(){
+
+  if(!livePreview){
+    return;
+  }
+
+  const title =
+    titleInput?.value.trim();
+
+  const summary =
+    document
+      .getElementById("summary")
+      ?.value.trim();
+
+  const category =
+    categoryInput?.value;
+
+  const author =
+    authorInput?.value.trim();
+
+
+  if(
+    !title &&
+    !summary &&
+    !category
+  ){
+
+    livePreview.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  livePreview.style.display =
+    "block";
+
+
+  livePreviewTitle.textContent =
+    title ||
+    "Your headline will appear here";
+
+
+  livePreviewSummary.textContent =
+    summary ||
+    "Your short summary will appear here.";
+
+
+  livePreviewMeta.textContent =
+    `${category || "Category"} • ${
+      author || "Worldiex Newsroom"
+    }`;
+
+}
+
+
+// =====================================
+// PREVIEW LISTENERS
+// =====================================
+
+if(titleInput){
+
+  titleInput.addEventListener(
+    "input",
+    updateLivePreview
+  );
+
+}
+
+
+if(categoryInput){
+
+  categoryInput.addEventListener(
+    "change",
+    updateLivePreview
+  );
+
+}
+
+
+if(authorInput){
+
+  authorInput.addEventListener(
+    "input",
+    updateLivePreview
+  );
+
+}
+
+
+const summaryInput =
+  document.getElementById("summary");
+
+
+if(summaryInput){
+
+  summaryInput.addEventListener(
+    "input",
+    updateLivePreview
+  );
+
+}
 // =====================================
 // START
 // =====================================
